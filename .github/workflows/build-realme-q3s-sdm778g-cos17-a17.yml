@@ -9,7 +9,7 @@ env:
   DEVICE_NAME : "realme_q3s_cn"
   DEVICE_CODENAME : "ice"
 
-  CUSTOM_CMDS : "CROSS_COMPILE=aarch64-linux-gnu- NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip"
+  CUSTOM_CMDS: "LLVM=1 LLVM_IAS=1 NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip"
   EXTRA_CMDS : ""
 
   KERNEL_SOURCE : "https://github.com/zhzhzhzh114514/android_kernel_oppo_sm7325.git"
