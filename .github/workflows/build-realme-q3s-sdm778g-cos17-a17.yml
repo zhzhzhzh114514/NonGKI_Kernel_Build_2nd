@@ -100,21 +100,6 @@ jobs:
       - name: ⏰ Checkout repository
         uses: actions/checkout@v6
         
-      - name: Checkout Kernel Source
-        uses: actions/checkout@v6
-        with:
-          repository: ZYouXPro/android_kernel_oppo_sm7325
-          path: kernel/msm-5.4
-          fetch-depth: 1
-          ref: 5.10-bpf
-
-      - name: Checkout Modules Source
-        uses: actions/checkout@v6
-        with:
-          repository: oppo-source/android_kernel_modules_and_devicetree_oppo_sm7325
-          path: temp_modules
-          ref: oppo/sm7325_v_15.0.0_k11
-
       - name: ⌛️ Compilation environment preparation
         uses: ./.github/workflows/build-env
 
