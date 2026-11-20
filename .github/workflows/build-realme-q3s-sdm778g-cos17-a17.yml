@@ -9,13 +9,13 @@ env:
   DEVICE_NAME : "realme_q3s_cn"
   DEVICE_CODENAME : "ice"
 
-  CUSTOM_CMDS: "LLVM=1 LLVM_IAS=1 NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip"
-  EXTRA_CMDS : ""
+  CUSTOM_CMDS : "CLANG_TRIPLE=aarch64-linux-gnu-"
+  EXTRA_CMDS : "BRAND_SHOW_FLAG=oppo LD=ld.lld LLVM=1 LLVM_IAS=1"
 
   KERNEL_SOURCE : "https://github.com/zhzhzhzh114514/android_kernel_oppo_sm7325.git"
   KERNEL_BRANCH : "5.10-bpf"
 
-  CLANG_SOURCE : "https://github.com/ZYouXPro/android_kernel_oppo_sm7325/releases/download/K11/linux-x86-refs_heads_llvm-r383902b-clang-r383902.tar.gz"
+  CLANG_SOURCE : "https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/LLVM-20.1.0-Linux-X64.tar.xz"
   CLANG_BRANCH : ""
 
   GCC_GNU : false
@@ -29,8 +29,8 @@ env:
   DEFCONFIG_ORIGIN_IMAGE: ""
   DEFCONFIG_FROM_BOOT: false
 
-  KERNELSU_SOURCE : ""
-  KERNELSU_BRANCH : ""
+  KERNELSU_SOURCE : "https://raw.githubusercontent.com/tiann/KernelSU/refs/heads/main/kernel/setup.sh"
+  KERNELSU_BRANCH : "v0.9.5"
 
   KERNELSU_AUTO_GET : "true" # if u want easy setting kernelsu, u can true.
   KERNELSU_AUTO_FORK : "bakasu" # xxksu, rsuntk , next, bakasu and sukisu
@@ -65,6 +65,8 @@ env:
   REKERNEL_ENABLE: "false" # if u need Re:Kernel.
   DROIDSPACES_ENABLE: "false" # if u need Droidspaces or LXC/Docker.
   NOMOUNT_ENABLE: "true" # if u need NoMount.
+  
+  FGETPRIORITY_ENABLE: "true" #if u need hide getpriority.
 
   HOOK_METHOD: "syscall" # Manual hook method -> syscall.
 
@@ -82,8 +84,8 @@ env:
   BUILD_DEBUGGER: "false" # Output build errors.
   SKIP_PATCH: "false" # Ignore errors found in Patch Debugger.
 
-  BUILD_OTHER_CONFIG: "false" # Merge config files.
-  MERGE_CONFIG_FILES: "vendor/debugfs.config"
+  BUILD_OTHER_CONFIG: "true" # Merge config files.
+  MERGE_CONFIG_FILES: "gki_defconfig"
 
   FREE_MORE_SPACE: "false" # if u want get more space, enabled it.
 
@@ -130,6 +132,10 @@ jobs:
 
       - name: 🛡️ Patch Kernel of NoMount
         uses: ./.github/workflows/patch-nomount
+        
+      - name: ⛔ Patch Kernel of fgetpriority
+        uses: ./.github/workflows/patch-fgetpriority
+
 
       - name: 🚀 Build Process
         uses: ./.github/workflows/build-process
