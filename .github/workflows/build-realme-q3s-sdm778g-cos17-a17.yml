@@ -15,7 +15,7 @@ env:
   KERNEL_SOURCE : "https://github.com/zhzhzhzh114514/android_kernel_oppo_sm7325.git"
   KERNEL_BRANCH : "5.10-bpf"
 
-  CLANG_SOURCE : "https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/LLVM-20.1.0-Linux-X64.tar.xz"
+  CLANG_SOURCE : "https://github.com/ZYouXPro/android_kernel_oppo_sm7325/releases/download/K11/linux-x86-refs_heads_llvm-r383902b-clang-r383902.tar.gz"
   CLANG_BRANCH : ""
 
   GCC_GNU : false
@@ -92,7 +92,7 @@ env:
 jobs:
   build-kernel:
     name: realme Q3s (ColorOS17.0)
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       CCACHE_COMPILERCHECK: "%compiler% -dumpmachine; %compiler% -dumpversion"
       CCACHE_NOHASHDIR: "true"
